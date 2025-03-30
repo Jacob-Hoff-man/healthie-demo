@@ -1,0 +1,75 @@
+# Ignore bundler config and gems
+/.bundle
+/vendor/bundle
+
+# Ignore all logfiles and tempfiles
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles, but keep the directory
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore uploaded files in development
+/storage/*
+!/storage/.keep
+/tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
+
+# Ignore master key for decrypting credentials
+/config/master.key
+
+# Ignore database configuration
+/config/database.yml
+
+# Ignore environment variables
+.env
+.env.*
+
+# Ignore test coverage reports
+/coverage/
+
+# Ignore precompiled assets
+/public/assets
+/public/packs
+/public/packs-test
+
+# Ignore yarn files
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+# Ignore Mac system files
+.DS_Store
+
+# Ignore RSpec state
+spec/examples.txt
+
+# Ignore byebug history
+.byebug_history
+
+# Ignore IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignore Ruby version managers
+.ruby-gemset
+
+# Ignore local cache
+.sass-cache/
+.cache/
+
+# Ignore test databases
+db/*.sqlite3
+db/*.sqlite3-journal
+db/*.sqlite3-[0-9]*
+
+# Ignore ERD diagrams
+erd.pdf 

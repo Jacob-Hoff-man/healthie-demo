@@ -27,7 +27,8 @@ demonstrate the functionality.
 ## How To Run
 
 - In a terminal, traverse to the `demo-ruby-classes-rails-api` directory
-    - Run `rails db:reset` to drop and recreate db, run migrations, and run seed.
+    - Run `rails db:migrate` to run migrations.
+    - Run `rails db:seed` to run seeds.
     - Run `rails server` to locally deploy the API.
     - Access the API at `http://localhost:3000`.
 
