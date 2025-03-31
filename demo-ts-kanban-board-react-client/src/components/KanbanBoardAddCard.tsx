@@ -17,12 +17,16 @@ const KanbanBoardAddCard = ({ onConfirm, onCancel }: KanbanBoardAddCardProps) =>
     const { item } = useItemContext();
     const { setItemTitle, setItemDescription } = useItemActionsContext();
 
-    const style: CSSProperties = {
+    const cardStyles: CSSProperties = {
         width: '100%',
         backgroundColor: '#ffffff',
     };
 
-    const invalidTitleStyle: CSSProperties = {
+    const spaceStyles: CSSProperties = {
+        width: '100%',
+    };
+
+    const invalidTitleStyles: CSSProperties = {
         fontSize: '12px',
         height: '22px',
         marginBottom: '4px'
@@ -46,9 +50,9 @@ const KanbanBoardAddCard = ({ onConfirm, onCancel }: KanbanBoardAddCardProps) =>
     };
 
     return (
-        <Card style={style}>
-            <Space direction="vertical" style={{ width: '100%' }}>
-                <div style={invalidTitleStyle}>
+        <Card style={cardStyles}>
+            <Space direction="vertical" style={spaceStyles}>
+                <div style={invalidTitleStyles}>
                     {item.title.trim() && !isTitleUnique ? (
                         <Text type="danger">Title must be unique</Text>
                     ) : (<Text>Add a new card</Text>)}

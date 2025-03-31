@@ -31,7 +31,11 @@ const KanbanBoardCard = ({
         group: column
     });
 
-    const style: CSSProperties = {
+    const handleDelete = () => {
+        removeItem(column, id);
+    };
+
+    const cardStyles: CSSProperties = {
         cursor: 'grab',
         opacity: isDragging ? 0.5 : 1,
         touchAction: 'none',
@@ -40,7 +44,7 @@ const KanbanBoardCard = ({
         position: 'relative',
     };
 
-    const deleteIconStyle: CSSProperties = {
+    const deleteIconStyles: CSSProperties = {
         position: 'absolute',
         top: '16px',
         right: '16px',
@@ -50,20 +54,16 @@ const KanbanBoardCard = ({
         color: '#ff4d4f',
     };
 
-    const handleDelete = () => {
-        removeItem(column, id);
-    };
-
     return (
         <Card
             ref={ref}
-            style={style}
+            style={cardStyles}
             data-dragging={isDragging}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
             <DeleteOutlined
-                style={deleteIconStyle}
+                style={deleteIconStyles}
                 onClick={handleDelete}
                 disabled={!isHovered}
             />

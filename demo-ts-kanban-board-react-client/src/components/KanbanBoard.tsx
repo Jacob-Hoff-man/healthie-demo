@@ -12,7 +12,7 @@ const KanbanBoard = () => {
     const { items } = useKanbanContext();
     const { setItems } = useKanbanActionsContext()
 
-    const styles: CSSProperties = {
+    const kanbanBoardstyles: CSSProperties = {
         padding: '24px',
         width: '100%',
         overflowX: 'auto',
@@ -45,7 +45,7 @@ const KanbanBoard = () => {
             <div style={headerStyles}>
                 <ScheduleOutlined /> Kanban Board
             </div>
-            <Flex style={styles}>
+            <Flex style={kanbanBoardstyles}>
                 {Object.entries(items).map(([column, columnItems], index) => (
                     <ItemProvider key={column}>
                         <KanbanBoardColumn

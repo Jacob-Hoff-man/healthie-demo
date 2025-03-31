@@ -41,7 +41,7 @@ const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
         clearItem();
     };
 
-    const style: CSSProperties = {
+    const columnStyles: CSSProperties = {
         padding: '16px',
         borderRadius: '8px',
         width: '300px',
@@ -56,13 +56,13 @@ const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
         transition: 'transform 2s ease',
     };
 
-    const titleStyle: CSSProperties = {
+    const titleStyles: CSSProperties = {
         textAlign: 'center',
         margin: 0,
         flexShrink: 0
     };
 
-    const cardsStyle: CSSProperties = {
+    const cardsStyles: CSSProperties = {
         display: 'flex',
         flexDirection: 'column',
         gap: '16px',
@@ -71,19 +71,15 @@ const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
         minHeight: 0
     };
 
-    const addButtonStyle: CSSProperties = {
-        marginTop: '8px',
+    const addButtonStyles: CSSProperties = {
         height: '40px',
-        flexShrink: 0
     };
 
     return (
-        <div ref={ref} style={style}>
-            <Title level={3} style={titleStyle}>{id}</Title>
-            <Flex vertical style={cardsStyle}>
-                <div style={{ flex: 1, overflowY: 'auto', minHeight: 0 }}>
-                    {children}
-                </div>
+        <div ref={ref} style={columnStyles}>
+            <Title level={3} style={titleStyles}>{id}</Title>
+            <Flex vertical style={cardsStyles}>
+                {children}
                 {isAddingItem ? (
                     <KanbanBoardAddCard
                         onConfirm={handleAddCard}
@@ -94,7 +90,7 @@ const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
                         type="dashed"
                         icon={<PlusOutlined />}
                         onClick={() => setIsAddingItem(true)}
-                        style={addButtonStyle}
+                        style={addButtonStyles}
                     >
                         Add Card
                     </Button>
