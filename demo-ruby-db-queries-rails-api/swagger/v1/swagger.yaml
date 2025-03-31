@@ -1,0 +1,691 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+  description: API documentation for the demo Ruby on Rails API
+paths:
+  "/clients":
+    get:
+      summary: Lists all clients
+      tags:
+      - Clients
+      responses:
+        '200':
+          description: clients found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                  required:
+                  - id
+                  - name
+                  - email
+    post:
+      summary: Creates a client
+      tags:
+      - Clients
+      parameters: []
+      responses:
+        '201':
+          description: client created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+                  required:
+                  - name
+                  - email
+  "/clients/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Retrieves a client
+      tags:
+      - Clients
+      responses:
+        '200':
+          description: client found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                required:
+                - id
+                - name
+                - email
+        '404':
+          description: client not found
+    put:
+      summary: Updates a client
+      tags:
+      - Clients
+      parameters: []
+      responses:
+        '200':
+          description: client updated
+        '404':
+          description: client not found
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+    delete:
+      summary: Deletes a client
+      tags:
+      - Clients
+      responses:
+        '204':
+          description: client deleted
+        '404':
+          description: client not found
+  "/clients/{client_id}/providers":
+    parameters:
+    - name: client_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Lists all providers for a client
+      tags:
+      - Clients
+      - Providers
+      responses:
+        '200':
+          description: providers found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    provider_id:
+                      type: integer
+                    client_id:
+                      type: integer
+                    plan_name:
+                      type: string
+                  required:
+                  - provider_id
+                  - client_id
+                  - plan_name
+  "/clients/{client_id}/journals":
+    parameters:
+    - name: client_id
+      in: path
+      description: Client ID
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Lists all journals for a client
+      tags:
+      - Journals
+      responses:
+        '200':
+          description: client not found returns empty array
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    client_id:
+                      type: integer
+                    text:
+                      type: string
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                  required:
+                  - id
+                  - client_id
+                  - text
+    post:
+      summary: Creates a journal entry
+      tags:
+      - Journals
+      parameters: []
+      responses:
+        '201':
+          description: journal created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                journal:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                    client_id:
+                      type: integer
+                  required:
+                  - text
+                  - client_id
+  "/plans":
+    get:
+      summary: Lists all plans
+      tags:
+      - Plans
+      responses:
+        '200':
+          description: plans found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                  required:
+                  - id
+                  - name
+    post:
+      summary: Creates a plan
+      tags:
+      - Plans
+      parameters: []
+      responses:
+        '201':
+          description: plan created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                plan:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                  required:
+                  - name
+  "/plans/{name}":
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Retrieves a plan
+      tags:
+      - Plans
+      responses:
+        '200':
+          description: plan found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                required:
+                - id
+                - name
+        '404':
+          description: plan not found
+    put:
+      summary: Updates a plan
+      tags:
+      - Plans
+      parameters: []
+      responses:
+        '200':
+          description: plan updated
+        '404':
+          description: plan not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                plan:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+    delete:
+      summary: Deletes a plan
+      tags:
+      - Plans
+      responses:
+        '204':
+          description: plan deleted
+        '404':
+          description: plan not found
+  "/plans/{name}/provider_client_plans":
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Lists all provider-client relationships for a plan
+      tags:
+      - Plans
+      - Provider Client Plans
+      responses:
+        '200':
+          description: relationships found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    provider_id:
+                      type: integer
+                    client_id:
+                      type: integer
+                    plan_name:
+                      type: string
+                  required:
+                  - provider_id
+                  - client_id
+                  - plan_name
+  "/provider_client_plans":
+    post:
+      summary: Creates a provider-client-plan relationship
+      tags:
+      - Provider Client Plans
+      parameters: []
+      responses:
+        '201':
+          description: relationship created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                provider_client_plan:
+                  type: object
+                  properties:
+                    provider_id:
+                      type: integer
+                    client_id:
+                      type: integer
+                    plan_name:
+                      type: string
+                  required:
+                  - provider_id
+                  - client_id
+                  - plan_name
+  "/provider_client_plans/{provider_id}/{client_id}/{plan_name}":
+    parameters:
+    - name: provider_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    - name: client_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    - name: plan_name
+      in: path
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: Deletes a provider-client-plan relationship
+      tags:
+      - Provider Client Plans
+      responses:
+        '204':
+          description: relationship deleted
+        '404':
+          description: relationship not found
+  "/providers":
+    get:
+      summary: Lists all providers
+      tags:
+      - Providers
+      responses:
+        '200':
+          description: providers found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                  required:
+                  - id
+                  - name
+                  - email
+    post:
+      summary: Creates a provider
+      tags:
+      - Providers
+      parameters: []
+      responses:
+        '201':
+          description: provider created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+                  required:
+                  - name
+                  - email
+  "/providers/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Retrieves a provider
+      tags:
+      - Providers
+      responses:
+        '200':
+          description: provider found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                required:
+                - id
+                - name
+                - email
+        '404':
+          description: provider not found
+    put:
+      summary: Updates a provider
+      tags:
+      - Providers
+      parameters: []
+      responses:
+        '200':
+          description: provider updated
+        '404':
+          description: provider not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+    delete:
+      summary: Deletes a provider
+      tags:
+      - Providers
+      responses:
+        '204':
+          description: provider deleted
+        '404':
+          description: provider not found
+  "/providers/{provider_id}/clients":
+    parameters:
+    - name: provider_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Lists all clients for a provider
+      tags:
+      - Providers
+      - Clients
+      responses:
+        '200':
+          description: clients found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    client_id:
+                      type: integer
+                    provider_id:
+                      type: integer
+                    plan_name:
+                      type: string
+                  required:
+                  - client_id
+                  - provider_id
+                  - plan_name
+  "/providers/{provider_id}/journals":
+    parameters:
+    - name: provider_id
+      in: path
+      description: Provider ID
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Lists all journals for a provider's clients
+      tags:
+      - Journals
+      responses:
+        '200':
+          description: provider not found returns empty array
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    client_id:
+                      type: integer
+                    text:
+                      type: string
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                  required:
+                  - id
+                  - client_id
+                  - text
+  "/journals/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: Journal ID
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Retrieves a journal entry
+      tags:
+      - Journals
+      responses:
+        '200':
+          description: journal found
+        '404':
+          description: journal not found
+    put:
+      summary: Updates a journal entry
+      tags:
+      - Journals
+      parameters: []
+      responses:
+        '200':
+          description: journal updated
+        '404':
+          description: journal not found
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                journal:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+    delete:
+      summary: Deletes a journal entry
+      tags:
+      - Journals
+      responses:
+        '204':
+          description: journal deleted
+        '404':
+          description: journal not found
+servers:
+- url: http://localhost:3000
+  description: Development server
+components:
+  schemas:
+    error:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string

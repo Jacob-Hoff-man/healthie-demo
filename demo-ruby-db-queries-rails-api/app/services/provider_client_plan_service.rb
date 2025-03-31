@@ -43,8 +43,7 @@ class ProviderClientPlanService
     end
 
     def list_plan_provider_client_plans(plan_name)
-      provider_client_plans = ProviderClientPlan.includes(:provider, :client)
-                                              .where(plan_name: plan_name)
+      provider_client_plans = ProviderClientPlan.where(plan_name: plan_name)
       Result.success(provider_client_plans)
     end
   end

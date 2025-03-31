@@ -5,7 +5,7 @@ class PlansController < ApplicationController
   end
 
   def show
-    result = PlanService.find_plan(params[:id])
+    result = PlanService.find_plan(params[:name])
     if result.success?
       render json: result.data
     else
@@ -23,7 +23,7 @@ class PlansController < ApplicationController
   end
 
   def update
-    find_result = PlanService.find_plan(params[:id])
+    find_result = PlanService.find_plan(params[:name])
     return render json: { errors: find_result.errors }, status: :not_found unless find_result.success?
 
     result = PlanService.update_plan(find_result.data, plan_params)
@@ -35,7 +35,7 @@ class PlansController < ApplicationController
   end
 
   def destroy
-    find_result = PlanService.find_plan(params[:id])
+    find_result = PlanService.find_plan(params[:name])
     return render json: { errors: find_result.errors }, status: :not_found unless find_result.success?
 
     result = PlanService.delete_plan(find_result.data)

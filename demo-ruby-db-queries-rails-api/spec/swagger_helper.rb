@@ -19,19 +19,29 @@ RSpec.configure do |config|
       openapi: '3.0.1',
       info: {
         title: 'API V1',
-        version: 'v1'
+        version: 'v1',
+        description: 'API documentation for the demo Ruby on Rails API'
       },
       paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
-          variables: {
-            defaultHost: {
-              default: 'www.example.com'
+          url: 'http://localhost:3000',
+          description: 'Development server'
+        }
+      ],
+      components: {
+        schemas: {
+          error: {
+            type: :object,
+            properties: {
+              errors: {
+                type: :array,
+                items: { type: :string }
+              }
             }
           }
         }
-      ]
+      }
     }
   }
 

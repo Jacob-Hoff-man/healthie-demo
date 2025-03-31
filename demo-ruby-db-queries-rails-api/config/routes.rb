@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -16,7 +18,7 @@ Rails.application.routes.draw do
     get 'providers', to: 'provider_client_plans#client_providers'
   end
 
-  resources :plans do
+  resources :plans, param: :name do
     get 'provider_client_plans', to: 'provider_client_plans#plan_provider_client_plans'
   end
 
