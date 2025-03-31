@@ -17,13 +17,18 @@ const KanbanBoard = () => {
         width: '100%',
         overflowX: 'auto',
         gap: '24px',
+        display: 'flex',
         justifyContent: 'center',
+        boxSizing: 'border-box',
+        minWidth: 'fit-content',
     };
 
     const headerStyles: CSSProperties = {
         padding: '1rem',
         textAlign: 'center',
-        fontSize: '1.5rem'
+        fontSize: '1.5rem',
+        width: '100%',
+        boxSizing: 'border-box',
     };
 
     return (

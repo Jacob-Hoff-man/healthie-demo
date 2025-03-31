@@ -1,7 +1,9 @@
-import { Items } from "../../types/kanban"
+import { Item } from "../../types/item"
+import { Cards, Items } from "../../types/kanban"
 
 export type KanbanState = {
     items: Items
+    cards: Cards
 }
 
 export enum ACTION {
@@ -15,7 +17,7 @@ export type AddItemAction = {
     type: ACTION.ADD_ITEM
     payload: {
         columnId: string
-        item: string
+        item: Item
     }
 }
 
@@ -41,6 +43,6 @@ export type KanbanAction =
 
 export type KanbanActions = {
     setItems: (items: Items) => void
-    addItem: (columnId: string, item: string) => void
+    addItem: (columnId: string, item: Item) => void
     removeItem: (columnId: string, item: string) => void
 }

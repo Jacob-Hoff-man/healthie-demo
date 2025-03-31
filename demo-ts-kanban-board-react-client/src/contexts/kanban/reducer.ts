@@ -11,7 +11,8 @@ export const kanbanStateReducer = (state: KanbanState, action: KanbanAction): Ka
         case ACTION.ADD_ITEM: {
             return {
                 ...state,
-                items: { ...state.items, [action.payload.columnId]: [...state.items[action.payload.columnId], action.payload.item] }
+                items: { ...state.items, [action.payload.columnId]: [...state.items[action.payload.columnId], action.payload.item.title] },
+                cards: { ...state.cards, [action.payload.item.title]: action.payload.item }
             }
         }
         case ACTION.REMOVE_ITEM: {

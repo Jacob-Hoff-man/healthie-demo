@@ -4,7 +4,7 @@ import { CollisionPriority } from "@dnd-kit/abstract";
 import { CSSProperties, ReactNode } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import KanbanBoardAddCard from "./KanbanBoardAddCard";
-import { useKanbanActionsContext, useKanbanContext } from "../contexts/kanban/context";
+import { useKanbanActionsContext } from "../contexts/kanban/context";
 import { Item } from "../types/item";
 import { useItemActionsContext, useItemContext } from "../contexts/item/context";
 
@@ -17,8 +17,7 @@ type KanbanBoardColumnProps = {
 }
 
 const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
-    const { items } = useKanbanContext();
-    const { setItems } = useKanbanActionsContext();
+    const { addItem } = useKanbanActionsContext();
 
     const { isAddingItem } = useItemContext();
     const { setIsAddingItem, clearItem } = useItemActionsContext();
@@ -32,11 +31,7 @@ const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
     });
 
     const handleAddCard = (newItem: Item) => {
-        const updatedItems = {
-            ...items,
-            [id]: [...items[id], newItem.title]
-        };
-        setItems(updatedItems);
+        addItem(id, newItem)
         setIsAddingItem(false);
         clearItem();
     };

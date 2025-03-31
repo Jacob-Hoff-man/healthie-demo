@@ -2,9 +2,9 @@ import { useSortable } from "@dnd-kit/react/sortable";
 import { Card, Typography } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { CSSProperties, useState } from "react";
-import { useKanbanActionsContext } from "../contexts/kanban/context";
+import { useKanbanActionsContext, useKanbanContext } from "../contexts/kanban/context";
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 type KanbanBoardCardProps = {
     id: string;
@@ -18,6 +18,8 @@ const KanbanBoardCard = ({
     column
 }: KanbanBoardCardProps) => {
     const [isHovered, setIsHovered] = useState(false);
+
+    const { cards } = useKanbanContext();
 
     const { removeItem } = useKanbanActionsContext();
 
@@ -65,7 +67,8 @@ const KanbanBoardCard = ({
                 onClick={handleDelete}
                 disabled={!isHovered}
             />
-            <Title level={5}>{id}</Title>
+            <Title level={5}>{cards[id].title}</Title>
+            <Text>{cards[id].description}</Text>
         </Card>
     );
 };

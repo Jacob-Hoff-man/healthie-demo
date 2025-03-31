@@ -1,6 +1,7 @@
 import { Dispatch } from 'react'
 import { ACTION, KanbanAction, KanbanActions } from './types'
 import { Items } from '../../types/kanban'
+import { Item } from '../../types/item'
 
 export const getKanbanActions = (dispatch: Dispatch<KanbanAction>): KanbanActions => ({
     setItems: (items: Items) => {
@@ -11,7 +12,7 @@ export const getKanbanActions = (dispatch: Dispatch<KanbanAction>): KanbanAction
             },
         })
     },
-    addItem: (columnId: string, item: string) => {
+    addItem: (columnId: string, item: Item) => {
         dispatch({
             type: ACTION.ADD_ITEM,
             payload: { columnId, item },
