@@ -26,7 +26,29 @@ If you are torn between multiple approaches, just choose one to implement and ex
 
 ### Problem Solution
 
-TODO
+- A database approach is used with Ruby On Rails
+    - The project utilizes the built-in SQLite local database.
+    - MVC pattern is used:
+        - Models represent data/tables in the db and utilize Active Records for interfacing with the db.
+            - `models/client`.
+            - `models/journal`.
+            - `models/plan`.
+            - `models/provider_client_plan`.
+            - `models/provider`.
+        - Services contain encapsulated business logic.
+            - `services/client_service`.
+            - `services/journal_service`.
+            - `services/plan_service`.
+            - `services/provider_client_plan_service`.
+            - `services/provider_service`.
+        - Controllers handle incoming web requests (e.g. Curl API request) and are mapped to routes defined in `/config/routes.rb`.
+            - `controllers/clients_controller`.
+            - `controllers/journals_controller`.
+            - `controllers/plans_controller`.
+            - `controllers/provider_client_plans_controller`.
+            - `controllers/providers_controller`.
+    - An API specification is generated and available in `swagger/v1/swagger.yaml`.
+        - after starting up the rails server, visit `http://localhost:3000/api-docs` for an interactive API document.
 
 ## How To Run
 
@@ -45,7 +67,3 @@ TODO
 rails new demo-ruby-db-queries-rails-api --skip-turbolinks --skip-javascript --skip-coffee --skip-sprockets --skip-yarn --skip-action-cable --skip-git
 ```
 
-- Generate API spec:
-```
-rails generate rswag:api:install && rails generate rswag:ui:install
-```
