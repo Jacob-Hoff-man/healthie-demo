@@ -21,7 +21,7 @@ const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
     const { setItems } = useKanbanActionsContext();
 
     const { isAddingItem } = useItemContext();
-    const { setIsAddingItem } = useItemActionsContext();
+    const { setIsAddingItem, clearItem } = useItemActionsContext();
 
     const { ref, isDragging, } = useSortable({
         id,
@@ -38,6 +38,12 @@ const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
         };
         setItems(updatedItems);
         setIsAddingItem(false);
+        clearItem();
+    };
+
+    const handleCancelAddCard = () => {
+        setIsAddingItem(false);
+        clearItem();
     };
 
     const style: CSSProperties = {
@@ -86,7 +92,7 @@ const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
                 {isAddingItem ? (
                     <KanbanBoardAddCard
                         onConfirm={handleAddCard}
-                        onCancel={() => setIsAddingItem(false)}
+                        onCancel={handleCancelAddCard}
                     />
                 ) : (
                     <Button

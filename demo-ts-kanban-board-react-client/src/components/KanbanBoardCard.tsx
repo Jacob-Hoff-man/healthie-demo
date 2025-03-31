@@ -1,6 +1,8 @@
 import { useSortable } from "@dnd-kit/react/sortable";
 import { Card, Typography } from "antd";
-import { CSSProperties } from "react";
+import { DeleteOutlined } from "@ant-design/icons";
+import { CSSProperties, useState } from "react";
+import { useKanbanActionsContext } from "../contexts/kanban/context";
 
 const { Title } = Typography;
 
@@ -15,6 +17,10 @@ const KanbanBoardCard = ({
     index,
     column
 }: KanbanBoardCardProps) => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    const { removeItem } = useKanbanActionsContext();
+
     const { ref, isDragging } = useSortable({
         id,
         index,
@@ -29,6 +35,21 @@ const KanbanBoardCard = ({
         touchAction: 'none',
         marginBottom: '8px',
         transition: 'transform 2s ease',
+        position: 'relative',
+    };
+
+    const deleteIconStyle: CSSProperties = {
+        position: 'absolute',
+        top: '16px',
+        right: '16px',
+        cursor: 'pointer',
+        opacity: isHovered ? 1 : 0,
+        transition: 'opacity 0.5s ease',
+        color: '#ff4d4f',
+    };
+
+    const handleDelete = () => {
+        removeItem(column, id);
     };
 
     return (
@@ -36,7 +57,14 @@ const KanbanBoardCard = ({
             ref={ref}
             style={style}
             data-dragging={isDragging}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
         >
+            <DeleteOutlined
+                style={deleteIconStyle}
+                onClick={handleDelete}
+                disabled={!isHovered}
+            />
             <Title level={5}>{id}</Title>
         </Card>
     );

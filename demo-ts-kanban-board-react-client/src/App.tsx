@@ -1,8 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import { ScheduleOutlined } from '@ant-design/icons'
 import KanbanBoardPage from './pages/KanbanBoardPage';
 import { CSSProperties } from 'react';
-import { Space } from 'antd';
 
 function App() {
   const appStyles: CSSProperties = {
