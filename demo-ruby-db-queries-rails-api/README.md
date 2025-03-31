@@ -31,8 +31,10 @@ TODO
 ## How To Run
 
 - In a terminal, traverse to the `demo-ruby-db-queries-rails-api` directory
+    - Run `bundle install` to install dependencies.
     - Run `rails db:migrate` to run migrations.
     - Run `rails db:seed` to run seeds.
+    - If API is changed, run `rails rswag:spec:swaggerize` to generate API specification file.
     - Run `rails server` to locally deploy the API.
     - Access the API at `http://localhost:3000`.
 

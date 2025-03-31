@@ -25,6 +25,7 @@ demonstrate the functionality.
 ### How To Run
 
 - In a terminal, traverse to the `demo-ruby-classes` directory
+    - Run `bundle install` to install dependencies.
     - Run `ruby main.rb` to run the main file.
     - Run `rspec` to run the tests defined in `demo-ruby-classes/spec`.
 
