@@ -25,7 +25,8 @@ Show how to do each of the queries listed above.
 If you are torn between multiple approaches, just choose one to implement and explain the other approach and what the pros and cons of each might be.
 
 ### Problem Solution
-
+- Entity-Relationship Diagram:
+![demo-ruby-db-queries-rails-api-er-diagram](../diagrams/demo-ruby-db-queries-rails-api-entity-relationship-diagram.png)
 - A database approach is used with Ruby On Rails
     - The project utilizes the built-in SQLite local database.
     - MVC pattern is used:

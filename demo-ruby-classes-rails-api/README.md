@@ -13,7 +13,8 @@ Include a driver file which requires the files, instantiates the classes, and in
 demonstrate the functionality.
 
 ### Problem Solution
-
+- Entity-Relationship Diagram:
+![demo-ruby-classes-rails-api-er-diagram](../diagrams/demo-ruby-classes-rails-api-entity-relationship-diagram.png)
 - A database approach is used with Ruby On Rails instead of polymorphism and classes in Ruby.
     - The project utilizes the built-in SQLite local database.
     - MVC pattern is used:
