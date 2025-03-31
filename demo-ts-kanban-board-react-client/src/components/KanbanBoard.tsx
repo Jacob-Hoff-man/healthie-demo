@@ -4,7 +4,9 @@ import { move } from '@dnd-kit/helpers';
 import KanbanBoardColumn from './KanbanBoardColumn';
 import KanbanBoardCard from './KanbanBoardCard';
 import { useKanbanActionsContext, useKanbanContext } from '../contexts/kanban/context';
-import { Flex, Space } from 'antd';
+import { Flex } from 'antd';
+import ItemProvider from '../contexts/item/provider';
+import { ScheduleOutlined } from '@ant-design/icons';
 
 const KanbanBoard = () => {
     const { items } = useKanbanContext();
@@ -12,11 +14,20 @@ const KanbanBoard = () => {
 
     const styles: CSSProperties = {
         padding: '24px',
-        display: 'flex',
+        width: '100%',
+        overflowX: 'auto',
         gap: '24px',
+        justifyContent: 'center',
+    };
+
+    const headerStyles: CSSProperties = {
+        padding: '1rem',
+        textAlign: 'center',
+        fontSize: '1.5rem'
     };
 
     return (
+
         <DragDropProvider
             onDragOver={(event) => {
                 const { source } = event.operation;
@@ -26,22 +37,26 @@ const KanbanBoard = () => {
                 setItems(move(items, event));
             }}
         >
+            <div style={headerStyles}>
+                <ScheduleOutlined /> Kanban Board
+            </div>
             <Flex style={styles}>
                 {Object.entries(items).map(([column, columnItems], index) => (
-                    <KanbanBoardColumn
-                        key={column}
-                        id={column}
-                        index={index}
-                    >
-                        {columnItems.map((id, index) => (
-                            <KanbanBoardCard
-                                key={id}
-                                id={id}
-                                index={index}
-                                column={column}
-                            />
-                        ))}
-                    </KanbanBoardColumn>
+                    <ItemProvider key={column}>
+                        <KanbanBoardColumn
+                            id={column}
+                            index={index}
+                        >
+                            {columnItems.map((id, index) => (
+                                <KanbanBoardCard
+                                    key={id}
+                                    id={id}
+                                    index={index}
+                                    column={column}
+                                />
+                            ))}
+                        </KanbanBoardColumn>
+                    </ItemProvider>
                 ))}
             </Flex>
         </DragDropProvider>

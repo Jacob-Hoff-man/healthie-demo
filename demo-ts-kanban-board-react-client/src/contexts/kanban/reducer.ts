@@ -8,6 +8,18 @@ export const kanbanStateReducer = (state: KanbanState, action: KanbanAction): Ka
                 items: action.payload.items
             }
         }
+        case ACTION.ADD_ITEM: {
+            return {
+                ...state,
+                items: { ...state.items, [action.payload.columnId]: [...state.items[action.payload.columnId], action.payload.item] }
+            }
+        }
+        case ACTION.REMOVE_ITEM: {
+            return {
+                ...state,
+                items: { ...state.items, [action.payload.columnId]: state.items[action.payload.columnId].filter(item => item !== action.payload.item) }
+            }
+        }
         default: {
             return ((x: never) => x)(action)
         }

@@ -26,7 +26,9 @@ const KanbanBoardCard = ({
     const style: CSSProperties = {
         cursor: 'grab',
         opacity: isDragging ? 0.5 : 1,
-        touchAction: 'none'
+        touchAction: 'none',
+        marginBottom: '8px',
+        transition: 'transform 2s ease',
     };
 
     return (

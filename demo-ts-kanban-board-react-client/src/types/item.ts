@@ -1,1 +1,4 @@
-export type Items = { [key: string]: string[] }
+export type Item = {
+    title: string
+    description: string
+}

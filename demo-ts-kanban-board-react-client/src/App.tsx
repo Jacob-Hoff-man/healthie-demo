@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { ScheduleOutlined } from '@ant-design/icons'
 import KanbanBoardPage from './pages/KanbanBoardPage';
 import { CSSProperties } from 'react';
+import { Space } from 'antd';
 
 function App() {
   const appStyles: CSSProperties = {
@@ -11,16 +12,8 @@ function App() {
     overflow: 'hidden',
   };
 
-  const headerStyles: CSSProperties = {
-    padding: '1rem',
-    flexShrink: 0,
-  };
-
   return (
     <div style={appStyles}>
-      <div style={headerStyles}>
-        <ScheduleOutlined /> Kanban board
-      </div>
       <Routes>
         <Route path="/" element={<KanbanBoardPage />} />
       </Routes>
