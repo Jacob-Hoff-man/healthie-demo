@@ -1,4 +1,4 @@
-import { Button, Flex, Typography } from "antd";
+import { Button, Typography } from "antd";
 import { useSortable } from "@dnd-kit/react/sortable";
 import { CollisionPriority } from "@dnd-kit/abstract";
 import { CSSProperties, ReactNode } from "react";
@@ -50,7 +50,7 @@ const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
         flexDirection: 'column',
         gap: '16px',
         backgroundColor: '#d0d0d0',
-        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+        boxShadow: '8px 8px 8px rgba(0, 0, 0, 0.2)',
         opacity: isDragging ? 0.5 : 1,
         touchAction: 'none',
         transition: 'transform 2s ease',
@@ -59,7 +59,6 @@ const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
     const titleStyles: CSSProperties = {
         textAlign: 'center',
         margin: 0,
-        flexShrink: 0
     };
 
     const cardsStyles: CSSProperties = {
