@@ -5,7 +5,6 @@ export const initialState: KanbanState = {
         'Todo': ['Bootstrap React Project', 'Bootstrap Ruby On Rails Project', 'Containerize API', 'Containerize Client'],
         'Doing': [],
         'Done': [],
-        'Archived': [],
     },
     cards: {
         'Bootstrap React Project': {
