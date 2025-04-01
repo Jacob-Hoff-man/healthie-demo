@@ -18,6 +18,7 @@ Make a frontend-only todo list app.
 
 - `antd` component library is used for React components.
 - `dnd-kit` is used for handling draggable and sortable component references.
+- `react-rewards` is used for rendering confetti.
 - There are contexts for handling state manamement, which use an action reducer pattern:
     - `kanban` context manages items maps for each column.
     - `item` context manages the configuration of a new item object to add in a column.

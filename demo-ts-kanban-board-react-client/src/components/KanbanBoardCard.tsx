@@ -1,6 +1,6 @@
 import { useSortable } from "@dnd-kit/react/sortable";
 import { Card, Typography } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteColumnOutlined, DeleteOutlined, DeleteTwoTone } from "@ant-design/icons";
 import { CSSProperties, useState } from "react";
 import { useKanbanActionsContext, useKanbanContext } from "../contexts/kanban/context";
 

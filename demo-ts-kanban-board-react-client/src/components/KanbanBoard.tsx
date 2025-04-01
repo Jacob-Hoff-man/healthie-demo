@@ -16,7 +16,7 @@ const KanbanBoard = () => {
     const { reward } = useReward(
         'confettiReward',
         'confetti',
-        { elementCount: 500, spread: 360 });
+        { elementCount: 750, spread: 360, elementSize: 16, startVelocity: 25 });
 
     const kanbanBoardstyles: CSSProperties = {
         padding: '24px',
@@ -32,7 +32,8 @@ const KanbanBoard = () => {
     const headerStyles: CSSProperties = {
         padding: '1rem',
         textAlign: 'center',
-        fontSize: '1.5rem',
+        fontSize: '2rem',
+        fontWeight: 'bold',
         width: '100%',
         boxSizing: 'border-box',
     };
