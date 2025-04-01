@@ -7,7 +7,7 @@ function App() {
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
-    overflow: 'hidden',
+    overflowX: 'auto',
   };
 
   return (
