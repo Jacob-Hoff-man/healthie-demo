@@ -39,7 +39,6 @@ const KanbanBoard = () => {
     };
 
     return (
-
         <DragDropProvider
             onDragOver={(event) => {
                 const { source } = event.operation;
