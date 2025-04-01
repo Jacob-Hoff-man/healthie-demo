@@ -22,7 +22,7 @@ const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
     const { isAddingItem } = useItemContext();
     const { setIsAddingItem, clearItem } = useItemActionsContext();
 
-    const { ref, isDragging, } = useSortable({
+    const { ref, isDragging } = useSortable({
         id,
         index,
         type: 'column',
@@ -76,8 +76,14 @@ const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
     };
 
     return (
-        <div ref={ref} style={columnStyles}>
-            <Title level={3} style={titleStyles}>{id}</Title>
+        <div ref={ref} style={columnStyles} >
+            <Title
+                level={3}
+                style={titleStyles}
+                id={id === 'Done' ? 'confettiReward' : ''}
+            >
+                {id}
+            </Title>
             <Flex vertical style={cardsStyles}>
                 {children}
                 {isAddingItem ? (

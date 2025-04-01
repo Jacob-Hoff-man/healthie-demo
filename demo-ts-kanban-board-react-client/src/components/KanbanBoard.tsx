@@ -7,10 +7,16 @@ import { useKanbanActionsContext, useKanbanContext } from '../contexts/kanban/co
 import { Flex } from 'antd';
 import ItemProvider from '../contexts/item/provider';
 import { ScheduleOutlined } from '@ant-design/icons';
+import { useReward } from 'react-rewards';
 
 const KanbanBoard = () => {
     const { items } = useKanbanContext();
     const { setItems } = useKanbanActionsContext()
+
+    const { reward } = useReward(
+        'confettiReward',
+        'confetti',
+        { elementCount: 500, spread: 360 });
 
     const kanbanBoardstyles: CSSProperties = {
         padding: '24px',
@@ -40,6 +46,15 @@ const KanbanBoard = () => {
                 if (!source || source.type === 'column') return;
 
                 setItems(move(items, event));
+            }}
+            onDragEnd={(event) => {
+                const { target } = event.operation;
+
+                if (!target || target.type === 'column') return;
+
+                if (items['Done'].includes(target.id.toString())) {
+                    reward()
+                }
             }}
         >
             <div style={headerStyles}>
