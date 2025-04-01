@@ -72,7 +72,7 @@ const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
     };
 
     const addButtonStyles: CSSProperties = {
-        height: '40px',
+        height: '40px'
     };
 
     return (
@@ -84,24 +84,24 @@ const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
             >
                 {id}
             </Title>
-            <Flex vertical style={cardsStyles}>
+            <div style={cardsStyles}>
                 {children}
-                {isAddingItem ? (
-                    <KanbanBoardAddCard
-                        onConfirm={handleAddCard}
-                        onCancel={handleCancelAddCard}
-                    />
-                ) : (
-                    <Button
-                        type="dashed"
-                        icon={<PlusOutlined />}
-                        onClick={() => setIsAddingItem(true)}
-                        style={addButtonStyles}
-                    >
-                        Add Card
-                    </Button>
-                )}
-            </Flex>
+            </div>
+            {isAddingItem ? (
+                <KanbanBoardAddCard
+                    onConfirm={handleAddCard}
+                    onCancel={handleCancelAddCard}
+                />
+            ) : (
+                <Button
+                    type="dashed"
+                    icon={<PlusOutlined />}
+                    onClick={() => setIsAddingItem(true)}
+                    style={addButtonStyles}
+                >
+                    Add Card
+                </Button>
+            )}
         </div>
     );
 };
