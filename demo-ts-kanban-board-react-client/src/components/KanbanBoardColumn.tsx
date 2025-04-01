@@ -53,7 +53,7 @@ const KanbanBoardColumn = ({ id, children, index }: KanbanBoardColumnProps) => {
         boxShadow: '8px 8px 8px rgba(0, 0, 0, 0.2)',
         opacity: isDragging ? 0.5 : 1,
         touchAction: 'none',
-        transition: 'transform 2s ease',
+        transition: 'opacity 0.2s ease',
     };
 
     const titleStyles: CSSProperties = {
